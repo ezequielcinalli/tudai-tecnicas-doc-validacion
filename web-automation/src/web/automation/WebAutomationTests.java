@@ -5,9 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,11 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebAutomationTests {
 
-	private WebDriver driver;
-	private WebDriverWait wait;
+	private static WebDriver driver;
+	private static WebDriverWait wait;
 	
-	@Before
-	public void setUp() {
+	@BeforeClass
+	public static void setUp() {
 		System.setProperty("webdriver.chrome.driver", "src/web/automation/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -51,8 +49,8 @@ public class WebAutomationTests {
 		assertNotNull(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[.='Resultados']"))));
 	}
 	
-	@After
-	public void tearDown() {
+	@AfterClass
+	public static void tearDown() {
 		driver.quit();
 	}
 	
